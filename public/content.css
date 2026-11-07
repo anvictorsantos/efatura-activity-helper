@@ -1,0 +1,215 @@
+/* The hint sits inside the portal's own <td>, so it resets inheritance and
+   rebuilds its own small design. Every rule is prefixed to avoid the portal. */
+
+.efv-hint {
+  all: initial;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 5px 0 0;
+  padding: 4px 7px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #f8fafc;
+  color: #0f172a;
+  font: 12px/1.35 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  text-align: left;
+  white-space: normal;
+  cursor: default;
+}
+
+.efv-hint--high {
+  background: #dcfce7;
+  border-color: #86efac;
+}
+
+.efv-hint--medium {
+  background: #fef3c7;
+  border-color: #fcd34d;
+}
+
+.efv-hint--low {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.efv-hint--loading {
+  color: #64748b;
+  font-style: italic;
+}
+
+.efv-hint .efv-dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #94a3b8;
+}
+
+.efv-hint--high .efv-dot {
+  background: #16a34a;
+}
+
+.efv-hint--medium .efv-dot {
+  background: #d97706;
+}
+
+.efv-hint .efv-badge {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.efv-hint .efv-meta {
+  flex: 1 1 120px;
+  min-width: 0;
+  overflow: hidden;
+  color: #475569;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.efv-hint .efv-warn {
+  color: #b45309;
+  font-weight: 700;
+  cursor: help;
+}
+
+.efv-hint .efv-alts {
+  display: flex;
+  flex: 1 0 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.efv-hint .efv-alts-caption {
+  color: #64748b;
+  font-size: 10.5px;
+}
+
+.efv-hint .efv-alt {
+  appearance: none;
+  padding: 1px 6px;
+  border: 1px solid #94a3b8;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #0f172a;
+  font: inherit;
+  font-size: 10.5px;
+  cursor: pointer;
+}
+
+.efv-hint .efv-alt:hover {
+  border-color: #16a34a;
+}
+
+.efv-hint .efv-alt:disabled {
+  cursor: default;
+}
+
+.efv-hint .efv-alt--active {
+  border-color: #16a34a;
+  background: #dcfce7;
+  font-weight: 700;
+}
+
+.efv-hint .efv-apply {
+  appearance: none;
+  flex: none;
+  padding: 2px 7px;
+  border: 1px solid #0d9488;
+  border-radius: 6px;
+  background: #0f766e;
+  color: #f0fdfa;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.efv-hint .efv-apply:hover {
+  background: #115e59;
+}
+
+.efv-hint .efv-apply:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+[data-efv-suggested].efv-suggested,
+select.efv-suggested {
+  border-radius: 5px !important;
+  outline: 3px solid #16a34a !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 6px rgba(22, 163, 74, 0.16) !important;
+}
+
+option[data-efv-suggested] {
+  background: #dcfce7 !important;
+  color: #14532d !important;
+  font-weight: 700 !important;
+}
+
+.efv-cell-suggested {
+  box-shadow: inset 0 0 0 3px #16a34a !important;
+}
+
+.efv-page-card {
+  border-radius: 8px !important;
+  outline: 3px solid #16a34a !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 7px rgba(22, 163, 74, 0.18) !important;
+}
+
+tr.efv-flash {
+  animation: efv-flash 1.2s ease;
+}
+
+@keyframes efv-flash {
+  0%,
+  100% {
+    background-color: transparent;
+  }
+  30%,
+  70% {
+    background-color: #fef08a;
+  }
+}
+
+.efv-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  z-index: 2147483647;
+  max-width: min(520px, calc(100vw - 32px));
+  padding: 9px 14px;
+  border-radius: 9px;
+  background: #0f172a;
+  color: #f8fafc;
+  font: 12.5px/1.4 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(8px);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.efv-toast--show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .efv-toast {
+    transition: none;
+  }
+
+  tr.efv-flash {
+    animation: none;
+  }
+}

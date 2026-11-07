@@ -1,0 +1,25 @@
+{
+  "name": "efatura-activity-helper",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Suggests the right e-Fatura activity for pending invoices by looking up the supplier NIF's CAE.",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "icons": "node scripts/make-icons.mjs",
+    "build": "node esbuild.config.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test src/core/*.test.ts src/infra/*.test.ts",
+    "verify": "npm run typecheck && npm test && npm run build",
+    "zip": "node scripts/zip.mjs"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.3.7",
+    "@types/node": "^26.6.6",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2"
+  }
+}

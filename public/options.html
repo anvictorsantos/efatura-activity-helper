@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>e-Fatura Activity Helper — opções</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --ink: #0f172a;
+        --muted: #64748b;
+        --line: #e2e8f0;
+        --accent: #0f766e;
+        --accent-ink: #f0fdfa;
+        --warn: #b45309;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b1220;
+          --card: #0f172a;
+          --ink: #e2e8f0;
+          --muted: #94a3b8;
+          --line: #1e293b;
+          --accent: #14b8a6;
+          --accent-ink: #042f2e;
+          --warn: #fbbf24;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 32px 16px 64px;
+        background: var(--bg);
+        color: var(--ink);
+        font: 14px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      }
+      main {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      h1 {
+        margin: 0 0 4px;
+        font-size: 22px;
+        letter-spacing: -0.01em;
+      }
+      .lede {
+        margin: 0 0 24px;
+        color: var(--muted);
+      }
+      section {
+        margin: 0 0 16px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--card);
+      }
+      h2 {
+        margin: 0 0 12px;
+        font-size: 15px;
+      }
+      p {
+        margin: 0 0 10px;
+      }
+      .hint {
+        color: var(--muted);
+        font-size: 12.5px;
+      }
+      label.row {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin: 10px 0;
+      }
+      label.row input[type="checkbox"] {
+        margin-top: 3px;
+      }
+      .field {
+        display: grid;
+        gap: 6px;
+        margin: 10px 0;
+      }
+      .field > span {
+        font-weight: 600;
+        font-size: 13px;
+      }
+      input[type="text"],
+      input[type="url"] {
+        width: 100%;
+        padding: 8px 10px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--bg);
+        color: var(--ink);
+        font: inherit;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      button {
+        appearance: none;
+        padding: 8px 14px;
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        background: var(--accent);
+        color: var(--accent-ink);
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button.secondary {
+        border-color: var(--line);
+        background: transparent;
+        color: var(--ink);
+        font-weight: 500;
+      }
+      button:disabled {
+        opacity: 0.55;
+        cursor: default;
+      }
+      .status {
+        color: var(--muted);
+        font-size: 12.5px;
+        min-height: 1.4em;
+      }
+      .result {
+        margin-top: 12px;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--bg);
+        font-size: 13px;
+        display: none;
+      }
+      .result.visible {
+        display: block;
+      }
+      .result dl {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 4px 12px;
+        margin: 0;
+      }
+      .result dt {
+        color: var(--muted);
+      }
+      .result dd {
+        margin: 0;
+        overflow-wrap: anywhere;
+      }
+      .pill {
+        display: inline-block;
+        padding: 1px 8px;
+        border: 1px solid var(--accent);
+        border-radius: 999px;
+        color: var(--accent);
+        font-weight: 700;
+      }
+      .warn {
+        color: var(--warn);
+      }
+      .foot {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>e-Fatura Activity Helper</h1>
+      <p class="lede">
+        Lê o NIF de cada emitente na lista de pendências, procura o CAE da empresa e realça a
+        atividade que o e-Fatura espera. Nunca submete o formulário.
+      </p>
+
+      <section>
+        <h2>Funcionamento</h2>
+        <label class="row">
+          <input type="checkbox" id="enabled" />
+          <span>
+            <strong>Ativar na página de pendências</strong><br />
+            <span class="hint">Sem isto, a extensão não injeta sugestões nem consulta NIFs.</span>
+          </span>
+        </label>
+        <label class="row">
+          <input type="checkbox" id="showPanel" />
+          <span>
+            <strong>Mostrar o painel de sugestões</strong><br />
+            <span class="hint">Pode ser recolhido no próprio painel.</span>
+          </span>
+        </label>
+        <label class="row">
+          <input type="checkbox" id="autoApply" />
+          <span>
+            <strong>Preencher automaticamente</strong><br />
+            <span class="hint">
+              Só quando existe uma única sugestão de confiança alta. Fornecedores com várias
+              atividades, CAE não confirmado ou alternativas ficam sempre para decidir. Continua a
+              ter de gravar no portal.
+            </span>
+          </span>
+        </label>
+      </section>
+
+      <section>
+        <h2>nif.pt (opcional)</h2>
+        <p>
+          O nif.pt devolve o CAE e a atividade registada, mas o webservice pede uma chave gratuita.
+          Sem chave, a extensão usa o VIES (nome oficial) e as páginas públicas do Racius.
+        </p>
+        <div class="field">
+          <span>Chave da API</span>
+          <input type="text" id="nifptKey" autocomplete="off" spellcheck="false" placeholder="chave nif.pt — deixe vazio para não usar" />
+        </div>
+        <p class="hint">
+          Peça a chave em
+          <a href="https://www.nif.pt/api/" target="_blank" rel="noreferrer">nif.pt/api</a>.
+          A chave fica apenas no seu perfil do Chrome (storage.sync).
+        </p>
+        <div class="actions">
+          <button id="save">Guardar</button>
+          <span class="status" id="saveStatus" role="status"></span>
+        </div>
+      </section>
+
+      <section>
+        <h2>Testar um NIF</h2>
+        <div class="field">
+          <span>NIF do emitente</span>
+          <input type="text" id="testNif" inputmode="numeric" maxlength="11" placeholder="ex.: 500330263" />
+        </div>
+        <div class="field">
+          <span>Nome (opcional)</span>
+          <input type="text" id="testName" autocomplete="off" placeholder="ajuda a encontrar a empresa no Racius" />
+        </div>
+        <div class="actions">
+          <button id="test">Consultar</button>
+          <span class="status" id="testStatus" role="status"></span>
+        </div>
+        <div class="result" id="testResult" aria-live="polite"></div>
+      </section>
+
+      <section>
+        <h2>Cache</h2>
+        <p class="hint">
+          Os resultados ficam guardados 30 dias. Limpe se mudou de chave ou se uma empresa mudou de
+          atividade.
+        </p>
+        <div class="actions">
+          <button id="clearCache" class="secondary">Limpar cache</button>
+          <span class="status" id="cacheStatus" role="status"></span>
+        </div>
+      </section>
+
+      <p class="foot">
+        Privacidade: só o NIF e o nome do emitente são enviados para nif.pt, VIES e Racius. Nada é
+        enviado para o autor da extensão.
+      </p>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="utf-8" />
+    <title>e-Fatura Activity Helper</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #0b1220;
+        --card: #0f172a;
+        --ink: #e2e8f0;
+        --muted: #94a3b8;
+        --line: #1e293b;
+        --accent: #14b8a6;
+        --accent-ink: #042f2e;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        width: 320px;
+        margin: 0;
+        padding: 14px;
+        background: var(--bg);
+        color: var(--ink);
+        font: 13px/1.45 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      }
+      h1 {
+        margin: 0 0 2px;
+        font-size: 14px;
+      }
+      .sub {
+        margin: 0 0 12px;
+        color: var(--muted);
+        font-size: 11.5px;
+      }
+      .card {
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--card);
+      }
+      .status {
+        margin: 0;
+        font-size: 12.5px;
+        color: var(--ink);
+      }
+      .counts {
+        display: flex;
+        gap: 14px;
+        margin-top: 10px;
+      }
+      .count {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+      }
+      .count strong {
+        font-size: 18px;
+        line-height: 1.1;
+      }
+      .count span {
+        color: var(--muted);
+        font-size: 10.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      button {
+        appearance: none;
+        padding: 7px 10px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button.primary {
+        border-color: var(--accent);
+        background: var(--accent);
+        color: var(--accent-ink);
+      }
+      button:hover {
+        filter: brightness(1.08);
+      }
+      .link {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+        padding: 4px;
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        font: inherit;
+        font-size: 11.5px;
+        text-align: center;
+        cursor: pointer;
+      }
+      .link:hover {
+        color: var(--accent);
+      }
+      .error {
+        color: #fca5a5;
+      }
+      .hint {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      a {
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>e-Fatura · atividades</h1>
+    <p class="sub">Sugestões de classificação para as faturas pendentes.</p>
+
+    <div class="card" id="card">
+      <p class="status" id="status">A ler a página…</p>
+      <div class="counts" id="counts" hidden>
+        <div class="count"><strong id="countRows">0</strong><span>linhas</span></div>
+        <div class="count"><strong id="countLooked">0</strong><span>consultadas</span></div>
+        <div class="count"><strong id="countPending">0</strong><span>em curso</span></div>
+        <div class="count"><strong id="countUnknown">0</strong><span>confirmar</span></div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="rescan" class="primary">Atualizar</button>
+      <button id="panel">Painel</button>
+      <button id="refresh">Repetir consultas</button>
+      <button id="options">Opções</button>
+    </div>
+
+    <button class="link" id="openPortal">Abrir a lista de pendências</button>
+    <script src="popup.js"></script>
+  </body>
+</html>
